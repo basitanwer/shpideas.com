@@ -1,0 +1,32 @@
+---
+/**
+ * A titled page section: hairline rule, monospace index, heading, then content.
+ *
+ * Renders a real <section> labelled by its own <h2>, so the heading order stays
+ * h1 → h2 → h3 and each section shows up as a landmark region.
+ */
+interface Props {
+  id: string;
+  heading: string;
+  /** Zero-padded counter shown before the heading, e.g. "01". */
+  index: string;
+}
+
+const { id, heading, index } = Astro.props;
+const headingId = `${id}-heading`;
+---
+
+<section id={id} aria-labelledby={headingId} class="border-t border-rule pt-8 sm:pt-10">
+  <div class="flex items-baseline gap-4">
+    <span class="font-mono text-2xs tracking-widest text-muted tabular-nums" aria-hidden="true">
+      {index}
+    </span>
+    <h2 id={headingId} class="text-xl font-semibold tracking-tight text-ink">
+      {heading}
+    </h2>
+  </div>
+
+  <div class="mt-6 sm:mt-8">
+    <slot />
+  </div>
+</section>

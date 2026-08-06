@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import ProductEntry from '../components/ProductEntry.astro';
+
+import { site, contact } from '../data/site';
+import { products } from '../data/products';
+import { hero, about, building, contactSection } from '../data/copy';
+
+const year = new Date().getFullYear();
+
+/** Section numbering is positional, so inserting a section renumbers the rest. */
+const index = (n: number) => String(n).padStart(2, '0');
+---
+
+<BaseLayout>
+  <header class="pt-20 pb-14 sm:pt-28 sm:pb-20">
+    <h1 class="font-mono text-3xl font-semibold tracking-tight text-ink">
+      {site.name}
+    </h1>
+    <p class="mt-5 max-w-measure text-lg text-ink">{hero.lede}</p>
+    <p class="mt-2 max-w-measure text-lg text-muted">
+      {hero.intro.before}<strong class="font-semibold text-ink">{hero.intro.author}</strong>{
+        hero.intro.after
+      }
+    </p>
+  </header>
+
+  <main id="main" class="flex flex-col gap-16 pb-16 sm:gap-20 sm:pb-20">
+    <Section id={building.id} heading={building.heading} index={index(1)}>
+      <div class="flex flex-col gap-12 sm:gap-14">
+        {products.map((product) => <ProductEntry product={product} />)}
+      </div>
+    </Section>
+
+    <Section id={about.id} heading={about.heading} index={index(2)}>
+      {
+        about.body.map((paragraph, i) => (
+          <p class:list={['max-w-measure text-base text-ink', i > 0 && 'mt-4']}>{paragraph}</p>
+        ))
+      }
+    </Section>
+
+    <Section id={contactSection.id} heading={contactSection.heading} index={index(3)}>
+      {contactSection.body.map((paragraph) => <p class="max-w-measure text-base text-ink">{paragraph}</p>)}
+
+      <ul class="mt-6 flex flex-col gap-3">
+        {
+          contact.map((link) => (
+            <li class="flex flex-wrap items-baseline gap-x-4">
+              <span class="w-16 shrink-0 font-mono text-2xs tracking-widest text-muted uppercase">
+                {link.label}
+              </span>
+              <a
+                href={link.href}
+                rel={link.external ? 'noopener' : undefined}
+                class="font-mono text-sm text-accent underline decoration-from-font underline-offset-4 hover:decoration-2"
+              >
+                {link.value}
+                {link.external && <span aria-hidden="true"> &#8599;</span>}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Section>
+  </main>
+
+  <footer class="border-t border-rule py-8">
+    <p class="font-mono text-2xs tracking-wide text-muted">
+      &copy; {year} {site.name}
+    </p>
+  </footer>
+</BaseLayout>

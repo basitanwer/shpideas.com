@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   ---------------------------------------------------------------------------
+   Every colour, font and size used by the site is defined here and nowhere
+   else. Change a value in this file and it changes everywhere.
+
+   Colours are declared twice — once for light, once inside the
+   `prefers-color-scheme: dark` block — then exposed to Tailwind through
+   `@theme inline`, which keeps the utilities pointing at the custom property
+   rather than baking in a literal. That is what lets `text-ink` follow the
+   system theme without any JavaScript.
+--------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light dark;
+
+  /* Surfaces */
+  --c-bg: #fbfaf7; /* warm off-white, not pure paper */
+  --c-rule: #e3ded3; /* hairline dividers */
+
+  /* Text */
+  --c-ink: #191a1c; /* body and headings */
+  --c-muted: #55585f; /* secondary text, labels — 6.8:1 on --c-bg */
+
+  /* The single accent. Links and status markers only. */
+  --c-accent: #2f6f6a; /* 5.6:1 on --c-bg */
+  --c-accent-soft: #dfe9e7; /* status pill background */
+
+  /* Focus ring — must stay visible against both surfaces. */
+  --c-focus: #1f5f96;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #0f1011;
+    --c-rule: #2a2c30;
+
+    --c-ink: #e9e7e3;
+    --c-muted: #9ba1a8; /* 7.3:1 on --c-bg */
+
+    --c-accent: #74b8b0; /* 8.4:1 on --c-bg */
+    --c-accent-soft: #1a2726;
+
+    --c-focus: #7fb6ea;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-rule: var(--c-rule);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-focus: var(--c-focus);
+
+  /* Type. System stacks only — nothing is fetched from a third party. */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+
+  /* A tight scale. Two steps of body copy, three of headings. */
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1.4;
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.6;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.6;
+  --text-xl: 1.4375rem;
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.25;
+  --text-3xl: 2.5rem;
+  --text-3xl--line-height: 1.1;
+
+  /* The measure. Long-form prose never exceeds this. */
+  --container-measure: 34rem;
+  --container-page: 44rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+
+html {
+  background-color: var(--c-bg);
+  /* No smooth scrolling: in-page anchors should land instantly. */
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* A single, consistent focus ring on every interactive element. Never removed —
+   the default outline is replaced, not suppressed. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--c-focus);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Nothing on this site animates. This is belt-and-braces for anything a browser
+   might animate on its own. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

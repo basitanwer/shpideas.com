@@ -1,0 +1,88 @@
+---
+/**
+ * The shell every page shares: head metadata, skip link, and the page frame.
+ *
+ * A second page (say `/writing`) should use this layout and pass its own title
+ * and description. Nothing in here is specific to the home page.
+ */
+import { site } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Path or URL of the social card image. Resolved against `site.url`. */
+  ogImage?: string;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  ogImage = site.ogImage,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url);
+const ogImageUrl = new URL(ogImage, Astro.site ?? site.url);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  founder: {
+    '@type': 'Person',
+    name: site.author,
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImageUrl.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.ogImageAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl.href} />
+    <meta name="twitter:image:alt" content={site.ogImageAlt} />
+
+    <meta name="author" content={site.author} />
+    <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1011" media="(prefers-color-scheme: dark)" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+  </head>
+
+  <body class="bg-bg font-sans text-base text-ink antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-10 focus:bg-bg focus:px-4 focus:py-2 focus:text-sm focus:text-accent"
+    >
+      Skip to content
+    </a>
+
+    <div class="mx-auto w-full max-w-page px-6 sm:px-8">
+      <slot />
+    </div>
+  </body>
+</html>

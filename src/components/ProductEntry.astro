@@ -1,0 +1,65 @@
+---
+/**
+ * One entry in the "What we're building" list.
+ *
+ * Driven entirely by a `Product` from `src/data/products.ts` — adding a third
+ * product means adding a third array entry, not touching this file.
+ *
+ * If per-product pages are ever added, the name here becomes the link and the
+ * rest of the markup stays as it is.
+ */
+import type { Product } from '../data/products';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const headingId = `product-${product.id}`;
+---
+
+<article aria-labelledby={headingId}>
+  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-2">
+    <h3 id={headingId} class="font-mono text-lg font-semibold tracking-tight text-ink">
+      {product.name}
+    </h3>
+
+    <p class="flex flex-wrap items-center gap-2">
+      <span
+        class="rounded-sm bg-accent-soft px-1.5 py-0.5 font-mono text-2xs tracking-wide text-accent"
+      >
+        {product.status}
+      </span>
+      {
+        product.tags?.map((tag) => (
+          <span class="font-mono text-2xs tracking-wide text-muted">{tag}</span>
+        ))
+      }
+    </p>
+  </div>
+
+  <p class="mt-3 max-w-measure text-base text-ink">{product.summary}</p>
+
+  {
+    product.body.map((paragraph) => (
+      <p class="mt-3 max-w-measure text-sm text-muted">{paragraph}</p>
+    ))
+  }
+
+  {
+    product.links && (
+      <p class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+        {product.links.map((link) => (
+          <a
+            href={link.href}
+            rel="noopener"
+            class="inline-flex min-h-6 items-center gap-1 font-mono text-xs text-accent underline decoration-from-font underline-offset-4 hover:decoration-2"
+          >
+            {link.label}
+            <span aria-hidden="true">&#8599;</span>
+          </a>
+        ))}
+      </p>
+    )
+  }
+</article>
