@@ -4,8 +4,13 @@
   // ("shpideas.com"), which is rejected — Worker names are lowercase
   // alphanumeric with dashes, no dots — and it installs the @astrojs/cloudflare
   // SSR adapter, which this site has no use for.
+  //
+  // The name must match the existing Cloudflare project exactly. Cloudflare
+  // created it as "shpideas-com" (sanitising the dot to a dash); a different
+  // name here does not rename that project, it deploys a second, separate
+  // Worker and leaves the real one empty.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "shpideas",
+  "name": "shpideas-com",
   "compatibility_date": "2026-08-06",
 
   // Static assets only. There is no "main" entry point on purpose: the site is
