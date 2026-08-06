@@ -1,0 +1,16 @@
+{
+  // Explicit config so Cloudflare's build-time auto-configuration does not
+  // generate one for us. Left to itself it names the Worker after the repo
+  // ("shpideas.com"), which is rejected — Worker names are lowercase
+  // alphanumeric with dashes, no dots — and it installs the @astrojs/cloudflare
+  // SSR adapter, which this site has no use for.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shpideas",
+  "compatibility_date": "2026-08-06",
+
+  // Static assets only. There is no "main" entry point on purpose: the site is
+  // prerendered HTML, so no Worker script runs on request.
+  "assets": {
+    "directory": "./dist"
+  }
+}
