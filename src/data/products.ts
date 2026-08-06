@@ -41,10 +41,10 @@ export const products: readonly Product[] = [
   {
     id: 'buddy',
     name: 'Buddy',
-    summary: 'A household organizer that lives in a WhatsApp chat.',
+    summary: 'A household organizer that lives in the chat app you already use.',
     body: [
-      'Send Buddy a voice note on the walk home, a photo of a school letter, a PDF from the plumber, or just type. It turns them into lists, reminders and memories the household can come back to later.',
-      'The scope is deliberate. Buddy organizes a household, and declines the things outside that boundary rather than trying to be useful at everything. It runs on a real number in testing today, and is not open to the public yet.',
+      'Send Buddy a voice note on the walk home, a photo of a school letter, a PDF from the plumber, or just type — in a normal chat, the way you would message anyone else. It turns them into lists, reminders and memories the household can come back to later.',
+      'The scope is deliberate. Buddy organizes a household, and declines the things outside that boundary rather than trying to be useful at everything. It is in testing today, on WhatsApp first, with Telegram and iMessage to follow. Not open to the public yet.',
     ],
     status: 'In development',
   },

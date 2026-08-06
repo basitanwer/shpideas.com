@@ -27,7 +27,7 @@ export const site = {
   title: 'Ship Ideas — the software studio of Basit Anwer',
   /** <meta name="description">. Kept under ~160 characters. */
   description:
-    'Ship Ideas is the one-person software studio of Basit Anwer. Currently building Buddy, a household organizer in WhatsApp, and mdp, a markdown viewer for the terminal.',
+    'Ship Ideas is the one-person software studio of Basit Anwer. Currently building Buddy, a household organizer that lives in your chat app, and mdp, a markdown viewer for the terminal.',
   /** Open Graph / Twitter card image, resolved against `url` at build time. */
   ogImage: '/og.png',
   /** Alt text for the card image. */
