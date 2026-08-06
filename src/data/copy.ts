@@ -28,7 +28,7 @@ export const hero = {
 } as const;
 
 /**
- * REVIEW: draft copy, written to be replaced by Basit.
+ * Reviewed and approved by Basit.
  *
  * Deliberately free of unverifiable claims — no years of experience, no former
  * employers, no numbers. If you add any, they should be things you can point at.
