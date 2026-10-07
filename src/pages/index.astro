@@ -19,11 +19,7 @@ const index = (n: number) => String(n).padStart(2, '0');
       {site.name}
     </h1>
     <p class="mt-5 max-w-measure text-lg text-ink">{hero.lede}</p>
-    <p class="mt-2 max-w-measure text-lg text-muted">
-      {hero.intro.before}<strong class="font-semibold text-ink">{hero.intro.author}</strong>{
-        hero.intro.after
-      }
-    </p>
+    <p class="mt-2 max-w-measure text-lg text-muted">{hero.intro}</p>
   </header>
 
   <main id="main" class="flex flex-col gap-16 pb-16 sm:gap-20 sm:pb-20">

@@ -60,4 +60,14 @@ export const products: readonly Product[] = [
     tags: ['Open source'],
     links: [{ label: 'Source on GitHub', href: 'https://github.com/basitanwer/mdp' }],
   },
+  {
+    id: 'tock',
+    name: 'Tock',
+    summary: 'A menu bar time tracker for the Mac, for people who bill several clients.',
+    body: [
+      'Tock sits in the macOS menu bar and keeps track of what is being worked on right now, how long it has taken today, and what that time is worth. Several timers can run at once, and each project carries its own billing rule — hourly, capped, prepaid, a retainer or a fixed fee — so a report for a client adds up without a spreadsheet.',
+      'A command line tool works on the same data as the app, and AI coding tools such as Claude Code can record their own time, kept apart from yours unless you choose to count it. Not released yet.',
+    ],
+    status: 'In development',
+  },
 ];

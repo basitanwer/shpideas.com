@@ -1,7 +1,7 @@
 # shpideas.com
 
-The website for Ship Ideas — a single static page: who Basit Anwer is, what is
-being built under the studio, and how to get in touch.
+The website for Ship Ideas, an independent software company — a single static
+page: what the company is building, what it is for, and how to get in touch.
 
 Astro + Tailwind CSS, statically generated. No client-side JavaScript, no web
 fonts, no analytics, no cookies.

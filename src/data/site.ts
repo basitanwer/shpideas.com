@@ -21,17 +21,17 @@ export const site = {
   name: 'Ship Ideas',
   /** Canonical origin. Drives sitemap.xml and absolute Open Graph URLs. */
   url: 'https://shpideas.com',
-  /** Owner. Referenced in the hero, the About section and structured metadata. */
+  /** Founder. Referenced in the author meta tag and structured metadata. */
   author: 'Basit Anwer',
   /** <title> for the home page. */
-  title: 'Ship Ideas — the software studio of Basit Anwer',
+  title: 'Ship Ideas — an independent software company',
   /** <meta name="description">. Kept under ~160 characters. */
   description:
-    'Ship Ideas is the one-person software studio of Basit Anwer. Currently building Buddy, a household organizer that lives in your chat app, and mdp, a markdown viewer for the terminal.',
+    'Ship Ideas is an independent software company building focused applications for everyday life and work. In development: Buddy, mdp and Tock.',
   /** Open Graph / Twitter card image, resolved against `url` at build time. */
   ogImage: '/og.png',
   /** Alt text for the card image. */
-  ogImageAlt: 'Ship Ideas — the software studio of Basit Anwer',
+  ogImageAlt: 'Ship Ideas — an independent software company',
 } as const;
 
 export const contact: readonly ContactLink[] = [
