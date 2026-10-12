@@ -4,8 +4,16 @@ import Section from '../components/Section.astro';
 import ProductEntry from '../components/ProductEntry.astro';
 
 import { site, contact } from '../data/site';
-import { products } from '../data/products';
-import { hero, about, building, contactSection } from '../data/copy';
+import { lead, projects } from '../data/products';
+import {
+  hero,
+  firstProduct,
+  otherProjects,
+  howWeBuild,
+  about,
+  companyFacts,
+  contactSection,
+} from '../data/copy';
 
 const year = new Date().getFullYear();
 
@@ -15,6 +23,22 @@ const index = (n: number) => String(n).padStart(2, '0');
 
 <BaseLayout>
   <header class="pt-20 pb-14 sm:pt-28 sm:pb-20">
+    <nav aria-label="Sections" class="mb-10 sm:mb-14">
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs">
+        {
+          [firstProduct, otherProjects, howWeBuild, about, contactSection].map((section) => (
+            <li>
+              <a
+                href={`#${section.id}`}
+                class="inline-flex min-h-6 items-center text-muted underline decoration-from-font underline-offset-4 hover:text-ink hover:decoration-2"
+              >
+                {section.id === firstProduct.id ? lead.name : section.heading}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
     <h1 class="font-mono text-3xl font-semibold tracking-tight text-ink">
       {site.name}
     </h1>
@@ -23,21 +47,46 @@ const index = (n: number) => String(n).padStart(2, '0');
   </header>
 
   <main id="main" class="flex flex-col gap-16 pb-16 sm:gap-20 sm:pb-20">
-    <Section id={building.id} heading={building.heading} index={index(1)}>
+    <Section id={firstProduct.id} heading={firstProduct.heading} index={index(1)}>
+      <ProductEntry product={lead} />
+    </Section>
+
+    <Section id={otherProjects.id} heading={otherProjects.heading} index={index(2)}>
       <div class="flex flex-col gap-12 sm:gap-14">
-        {products.map((product) => <ProductEntry product={product} />)}
+        {projects.map((product) => <ProductEntry product={product} />)}
       </div>
     </Section>
 
-    <Section id={about.id} heading={about.heading} index={index(2)}>
+    <Section id={howWeBuild.id} heading={howWeBuild.heading} index={index(3)}>
       {
-        about.body.map((paragraph, i) => (
+        howWeBuild.body.map((paragraph, i) => (
           <p class:list={['max-w-measure text-base text-ink', i > 0 && 'mt-4']}>{paragraph}</p>
         ))
       }
     </Section>
 
-    <Section id={contactSection.id} heading={contactSection.heading} index={index(3)}>
+    <Section id={about.id} heading={about.heading} index={index(4)}>
+      {
+        about.body.map((paragraph, i) => (
+          <p class:list={['max-w-measure text-base text-ink', i > 0 && 'mt-4']}>{paragraph}</p>
+        ))
+      }
+
+      <dl class="mt-6 flex flex-col gap-3">
+        {
+          companyFacts.map((fact) => (
+            <div class="flex flex-wrap items-baseline gap-x-4">
+              <dt class="w-24 shrink-0 font-mono text-2xs tracking-widest text-muted uppercase">
+                {fact.label}
+              </dt>
+              <dd class="font-mono text-sm text-ink">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </Section>
+
+    <Section id={contactSection.id} heading={contactSection.heading} index={index(5)}>
       {contactSection.body.map((paragraph) => <p class="max-w-measure text-base text-ink">{paragraph}</p>)}
 
       <ul class="mt-6 flex flex-col gap-3">
@@ -64,7 +113,7 @@ const index = (n: number) => String(n).padStart(2, '0');
 
   <footer class="border-t border-rule py-8">
     <p class="font-mono text-2xs tracking-wide text-muted">
-      &copy; {year} {site.name}
+      &copy; {year} {site.legalName}
     </p>
   </footer>
 </BaseLayout>

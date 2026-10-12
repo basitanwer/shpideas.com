@@ -45,12 +45,13 @@ No copy is hardcoded in markup. Everything editable is in `src/data/`:
 | File | Holds |
 | --- | --- |
 | `src/data/site.ts` | Name, URL, page title, meta description, contact links |
-| `src/data/products.ts` | The product listing |
-| `src/data/copy.ts` | Hero, About and Contact prose |
+| `src/data/products.ts` | The lead product (`lead`) and the other projects (`projects`) |
+| `src/data/copy.ts` | Hero, section headings, How we build, Company and Contact prose |
+| `src/assets/` | Screenshots. Real captures of the software only, never mockups |
 
 ### Adding a product
 
-Append one entry to the `products` array in `src/data/products.ts`:
+Append one entry to the `projects` array in `src/data/products.ts`:
 
 ```ts
 {

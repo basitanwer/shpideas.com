@@ -1,13 +1,16 @@
 ---
 /**
- * One entry in the "What we're building" list.
+ * One product: its name and status, what it is, a real picture of it when
+ * there is one, and its links.
  *
- * Driven entirely by a `Product` from `src/data/products.ts` — adding a third
- * product means adding a third array entry, not touching this file.
+ * Driven entirely by a `Product` from `src/data/products.ts` — adding a
+ * project means adding an array entry, not touching this file.
  *
  * If per-product pages are ever added, the name here becomes the link and the
  * rest of the markup stays as it is.
  */
+import { Image } from 'astro:assets';
+
 import type { Product } from '../data/products';
 
 interface Props {
@@ -60,6 +63,23 @@ const headingId = `product-${product.id}`;
           </a>
         ))}
       </p>
+    )
+  }
+
+  {
+    product.image && (
+      <figure class="mt-6">
+        <Image
+          src={product.image.src}
+          alt={product.image.alt}
+          widths={[640, 960, product.image.src.width]}
+          sizes="(min-width: 46rem) 42rem, calc(100vw - 3rem)"
+          class="h-auto w-full rounded-md border border-rule"
+        />
+        <figcaption class="mt-2 font-mono text-2xs tracking-wide text-muted">
+          {product.image.caption}
+        </figcaption>
+      </figure>
     )
   }
 </article>

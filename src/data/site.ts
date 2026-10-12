@@ -19,6 +19,10 @@ export interface ContactLink {
 export const site = {
   /** Brand name, used in the wordmark and page title. */
   name: 'Ship Ideas',
+  /** The company behind the brand. Used in the footer and structured metadata. */
+  legalName: 'SHP Ideas, LLC',
+  /** Year the company was formed. */
+  founded: '2026',
   /** Canonical origin. Drives sitemap.xml and absolute Open Graph URLs. */
   url: 'https://shpideas.com',
   /** Founder. Referenced in the author meta tag and structured metadata. */
@@ -27,7 +31,7 @@ export const site = {
   title: 'Ship Ideas — an independent software company',
   /** <meta name="description">. Kept under ~160 characters. */
   description:
-    'Ship Ideas is an independent software company building focused applications for everyday life and work. In development: Buddy, mdp and Tock.',
+    'Ship Ideas is an independent software company that builds its own products. First up: Tock, a menu bar time tracker for the Mac, approaching launch.',
   /** Open Graph / Twitter card image, resolved against `url` at build time. */
   ogImage: '/og.png',
   /** Alt text for the card image. */
