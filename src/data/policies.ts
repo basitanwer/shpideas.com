@@ -144,7 +144,7 @@ export const tockPrivacy: Policy = {
         'usetock.com sets no cookies, loads no scripts from other companies and runs no analytics.',
         'It is served by Cloudflare, which handles each request, your IP address included, to deliver the page and to keep the site safe from abuse.',
         'When you join the waitlist on usetock.com, we send one email with a link to confirm your address. Until you confirm, we keep no list with your address on it: the link itself carries the address, readable by anyone who has the link, and stops working after 7 days. Resend, which delivers that email, keeps its own record of having sent it. When you press the button on the page the link opens, your address is added to our list at Resend, along with whether you offered to beta test.',
-        'We use that list to write to you once when Tock is released, and before that only if you offered to beta test. We use it for nothing else, and you can leave it at any time by writing to us.',
+        'We use that list to write to you about Tock: when it is released, about the beta if you offered to test, and now and then with news of it. We use it for nothing else and give it to nobody, and you can leave it at any time by writing to us.',
       ],
     },
     {
@@ -158,7 +158,7 @@ export const tockPrivacy: Policy = {
       body: [
         // OPEN: these periods are proposals, yours to set. Nothing deletes on a date by itself: each is done by hand.
         [
-          'The waitlist: until you ask to leave it, and no longer than a year after Tock is released.',
+          'The waitlist: until you ask to leave it.',
           'Emails and crash reports: up to two years after the conversation ends or the fault is fixed.',
           'The record of a sale: as long as tax and accounting law requires.',
           'The order number of a refunded purchase, in Tock’s list: for as long as Tock is updated, since every later version has to refuse that key.',
