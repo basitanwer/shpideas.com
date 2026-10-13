@@ -1,0 +1,37 @@
+---
+/**
+ * The footer's links to the policies, on the home page and on each policy.
+ * The policy being read is named without a link.
+ */
+import { policies } from '../data/policies';
+
+interface Props {
+  /** The path of the page this footer is on, when it is a policy. */
+  current?: string;
+}
+
+const { current } = Astro.props;
+---
+
+<nav aria-label="Policies">
+  <ul class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs">
+    {
+      policies.map((policy) => (
+        <li>
+          {policy.path === current ? (
+            <span aria-current="page" class="inline-flex min-h-6 items-center text-ink">
+              {policy.title}
+            </span>
+          ) : (
+            <a
+              href={policy.path}
+              class="inline-flex min-h-6 items-center text-muted underline decoration-from-font underline-offset-4 hover:text-ink hover:decoration-2"
+            >
+              {policy.title}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>

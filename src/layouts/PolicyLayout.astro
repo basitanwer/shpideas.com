@@ -1,0 +1,79 @@
+---
+/**
+ * A policy page: the way back to the home page, the policy's title and date,
+ * its sections, then the address for questions and the footer.
+ *
+ * Driven entirely by a `Policy` from `src/data/policies.ts`. A page under
+ * `src/pages/` passes one in and holds nothing else.
+ */
+import BaseLayout from './BaseLayout.astro';
+import PolicyLinks from '../components/PolicyLinks.astro';
+
+import { site } from '../data/site';
+import type { Policy } from '../data/policies';
+
+interface Props {
+  policy: Policy;
+}
+
+const { policy } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<BaseLayout title={`${policy.title} — ${site.name}`} description={policy.description}>
+  <header class="pt-20 pb-10 sm:pt-28 sm:pb-14">
+    <p class="mb-10 font-mono text-xs sm:mb-14">
+      <a
+        href="/"
+        class="inline-flex min-h-6 items-center text-muted underline decoration-from-font underline-offset-4 hover:text-ink hover:decoration-2"
+      >
+        {site.name}
+      </a>
+    </p>
+    <h1 class="font-mono text-3xl font-semibold tracking-tight text-ink">{policy.title}</h1>
+    <p class="mt-5 font-mono text-2xs tracking-widest text-muted uppercase">
+      Last updated {policy.updated}
+    </p>
+    {policy.intro.map((paragraph) => <p class="mt-5 max-w-measure text-lg text-ink">{paragraph}</p>)}
+  </header>
+
+  <main id="main" class="flex flex-col gap-12 pb-16 sm:gap-14 sm:pb-20">
+    {
+      policy.sections.map((section) => (
+        <section class="border-t border-rule pt-8 sm:pt-10">
+          <h2 class="text-xl font-semibold tracking-tight text-ink">{section.heading}</h2>
+          {section.body.map((block) =>
+            typeof block === 'string' ? (
+              <p class="mt-4 max-w-measure text-base text-ink">{block}</p>
+            ) : (
+              <ul class="mt-4 flex max-w-measure list-disc flex-col gap-2 pl-5 text-base text-ink">
+                {block.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            ),
+          )}
+        </section>
+      ))
+    }
+
+    <section class="border-t border-rule pt-8 sm:pt-10">
+      <h2 class="text-xl font-semibold tracking-tight text-ink">Questions</h2>
+      <p class="mt-4 max-w-measure text-base text-ink">
+        Write to
+        <a
+          href={`mailto:${policy.contact}`}
+          class="text-accent underline decoration-from-font underline-offset-4 hover:decoration-2"
+          >{policy.contact}</a
+        >.
+      </p>
+    </section>
+  </main>
+
+  <footer class="border-t border-rule py-8">
+    <PolicyLinks current={policy.path} />
+    <p class="mt-4 font-mono text-2xs tracking-wide text-muted">
+      &copy; {year} {site.legalName}
+    </p>
+  </footer>
+</BaseLayout>

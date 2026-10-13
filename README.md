@@ -47,6 +47,7 @@ No copy is hardcoded in markup. Everything editable is in `src/data/`:
 | `src/data/site.ts` | Name, URL, page title, meta description, contact links |
 | `src/data/products.ts` | The lead product (`lead`) and the other projects (`projects`) |
 | `src/data/copy.ts` | Hero, section headings, How we build, Company and Contact prose |
+| `src/data/policies.ts` | The company's privacy policy at `/privacy`, and each product's own policies under its name: Tock's at `/tock/privacy`, `/tock/terms` and `/tock/refunds` |
 | `src/assets/` | Screenshots. Real captures of the software only, never mockups |
 
 ### Adding a product
