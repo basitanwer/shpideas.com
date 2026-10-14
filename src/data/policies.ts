@@ -52,7 +52,7 @@ const crashReportEmail = 'crash@usetock.com';
 /** PAYMENTS-PLAN decision 6, decided 2026-10-13. */
 const refundWindowDays = 30;
 
-const updated = '13 October 2026';
+const updated = '14 October 2026';
 
 export const privacy: Policy = {
   path: '/privacy',
@@ -103,21 +103,21 @@ export const tockPrivacy: Policy = {
   updated,
   intro: [
     `This policy covers Tock, the time tracker for the Mac made by ${site.legalName}, which works under the name ${site.name}, and Tock’s website, usetock.com. It says what each collects, who else handles it and how to have it removed. It covers no other product of the company.`,
-    'The short version: Tock keeps your time on your Mac. It has no account, we run no server that holds what you record, and it sends us no report of what you do.',
+    'The short version: Tock keeps your time on your Mac. It has no account, we run no server that holds what you record, and it sends us nothing about how you use it: only one message when you activate a key on a Mac.',
   ],
   sections: [
     {
       heading: 'Tock, the app',
       body: [
         'Everything you record in Tock, your clients, projects, to-dos, time, rates and notes, is kept in a database on your Mac. It is not sent to us and we cannot read it.',
-        'Tock has no analytics and no telemetry. It does not report what you do in it or how often you open it.',
+        'Tock has no analytics. It does not report what you do in it or how often you open it.',
         'To notice that you have stepped away, Tock asks macOS how long ago the keyboard or mouse was last used. It does not read what you type or what is on your screen.',
         // Sync is hidden in 1.0. When it ships, say here that a copy goes to the user's private iCloud database, and name Apple below.
         // The update check is in 1.0 and not built yet (LAUNCH-BLOCKERS section 2). Check this paragraph against the build.
         'Tock checks for new versions by fetching a file from usetock.com. Like any request to a website, the check reaches our host with your IP address and the version of Tock you run. It carries nothing else about you and nothing you have recorded. You can turn the check off in Settings.',
         // OPEN: the crash report is not built. Once it is, list here what a report holds (LAUNCH-CHECKLIST section 4).
         `If Tock crashes, it offers to send us a report, at ${crashReportEmail}. The whole report is shown to you first, and nothing is sent unless you press Send. We use a report to find and fix the fault, and for nothing else.`,
-        'Tock checks your licence key on your Mac. It makes no network call to do so.',
+        'Tock checks your licence key on your Mac, and never asks a server whether it works. When you activate a key on a Mac, Tock sends one message to buy.usetock.com: the key, with your name, your email address and the order number in it, and a one-way code for that Mac, which is different for every licence and from which nothing about the Mac can be read. Like any request to a website, it reaches our host with your IP address. If the message cannot be delivered, Tock sends it again later, until our service has taken it. Activating never depends on the answer, and Tock works the same without one. It sends nothing else about your licence. We keep usetock.com for as long as a version of Tock that sends this may run.',
         'The Buy button opens a web address that carries the day of your trial and your version of Tock. The “Not for me” button’s address carries the number of days you used Tock, the day of your trial and the version. Nothing is sent unless you press the button, and nothing else is on the link.',
       ],
     },
@@ -129,8 +129,8 @@ export const tockPrivacy: Policy = {
         'Tock is sold by Link, a part of Stripe, which is the seller whichever way you pay, Apple Pay included. You do not need a Link account. Link takes the payment and holds your payment details under its own privacy policy. We never see your card number.',
         'With each sale we receive your name, your email address and your country.',
         'Your licence key holds your name, your email address and the order number, so that the key says whose it is. Anyone you give the key to can read them.',
-        'The email that brings your key is delivered by Resend. The service that makes the key, at buy.usetock.com, runs on Cloudflare. That service keeps no record of buyers: when it needs a purchase, it reads it from Stripe.',
-        'The page that activates a key reads it in your browser. The key is not sent to the service.',
+        'The email that brings your key is delivered by Resend. The service that makes the key, at buy.usetock.com, runs on Cloudflare. That service keeps one record: for each licence, the codes of the Macs it was activated on, each with the day it was first seen, so that we know how many Macs a licence is used on. It does not keep the name or the email address the key holds, and the record is never used to end a licence. For anything else about a purchase it reads Stripe.',
+        'The page that activates a key reads it in your browser and does not send it. Tock sends it when it is activated, as “Tock, the app” says.',
         // Stripe's page says the buyer's data is removed from the purchase; whether the purchase can still be found was not seen (PAYMENTS-PLAN section 2).
         'If you ask Link to delete your data, your key goes on working. We may then no longer be able to look the purchase up, for example to send you the key again.',
         'When a purchase is refunded in full, or a dispute raised with your bank is decided against us, its order number goes on a list inside later versions of Tock, so that the key stops working. The list holds order numbers and nothing else.',
@@ -162,6 +162,7 @@ export const tockPrivacy: Policy = {
           'Emails and crash reports: up to two years after the conversation ends or the fault is fixed.',
           'The record of a sale: as long as tax and accounting law requires.',
           'The order number of a refunded purchase, in Tock’s list: for as long as Tock is updated, since every later version has to refuse that key.',
+          'The Macs a licence was activated on: for as long as we sell Tock, or until you ask us to delete yours. We then keep the order number alone, so that we never count that licence again.',
           'Requests to the website: as long as Cloudflare keeps its own logs. We keep none of our own.',
         ],
       ],
@@ -185,7 +186,7 @@ export const tockPrivacy: Policy = {
       heading: 'Your choices',
       body: [
         'What you record in Tock is already yours: you can export it, edit it and delete it in the app.',
-        `Write to ${tockSupportEmail} to see, correct or delete what we hold about you: your place on the waitlist, your emails to us, and the record of your purchase where the law lets us delete it.`,
+        `Write to ${tockSupportEmail} to see, correct or delete what we hold about you: your place on the waitlist, your emails to us, the Macs your licence was activated on, and the record of your purchase where the law lets us delete it.`,
         'Wherever you live, you can ask us for a copy of your data in a form you can take elsewhere, ask us to stop or limit a use of it, and take back a consent you gave, such as your place on the waitlist. You can also complain to the data protection authority of your country.',
       ],
     },
@@ -200,6 +201,7 @@ export const tockPrivacy: Policy = {
           'A contract with you: making your licence key and sending it, and refunds.',
           'A legal duty: keeping the record of a sale.',
           'Our legitimate interest in answering people who write to us and in keeping the site and the licence service safe from abuse, and in refusing the key of a purchase that was refunded.',
+          'Our legitimate interest in knowing how many Macs a licence is used on, to decide what to build: the Macs a licence was activated on.',
         ],
       ],
     },
@@ -232,7 +234,6 @@ export const tockTerms: Policy = {
     {
       heading: 'The licence',
       body: [
-        // OPEN: whether a Mac your employer owns counts is yours to decide. PRICING says "your own Macs".
         'A licence is for one person. It lets you use Tock on every Mac you use yourself, whether it is your own or one given to you for your work.',
         'A lifetime licence covers every update to Tock for Mac, for as long as we make Tock. “Lifetime” is the product’s lifetime, not yours. Apps for other devices, such as an iPhone app, are separate purchases. If we ever stop making Tock, your licence does not end: the key is checked on your Mac and needs no server of ours. We cannot promise that an old version will run on a macOS released after it.',
         'Tock is licensed to you, not sold. You may not resell it, pass it on, or remove or get around the licence check, and you may not take it apart except where the law says you may. All rights not given here stay with us.',
@@ -241,7 +242,7 @@ export const tockTerms: Policy = {
     {
       heading: 'Your key',
       body: [
-        'Your licence key holds your name, your email address and the order number. It works offline and is never checked against a server.',
+        'Your licence key holds your name, your email address and the order number. It works offline, and Tock never asks a server whether it works. When you activate it on a Mac, Tock tells us so, in one message, so that we know how many Macs a licence is used on. Nothing depends on that.',
         'Keep it to yourself. A key that is shared or published may stop working in a later update.',
         'A refund in full ends the licence on that day. So does a dispute you raise with your bank, once the bank decides it in your favour. While a dispute is open, and if it is decided any other way, the licence stands and the key is left alone. Tock checks keys offline, so a key whose licence has ended stops working with a later update. What you recorded stays readable, editable and exportable.',
         `If your key stops working and you think that is a mistake, write to ${tockSupportEmail} and we will put it right.`,
