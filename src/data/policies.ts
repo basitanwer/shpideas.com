@@ -52,7 +52,7 @@ const crashReportEmail = 'crash@usetock.com';
 /** PAYMENTS-PLAN decision 6, decided 2026-10-13. */
 const refundWindowDays = 30;
 
-const updated = '14 October 2026';
+const updated = '16 October 2026';
 
 export const privacy: Policy = {
   path: '/privacy',
@@ -115,8 +115,10 @@ export const tockPrivacy: Policy = {
         // Sync is hidden in 1.0. When it ships, say here that a copy goes to the user's private iCloud database, and name Apple below.
         // The update check is in 1.0 and not built yet (LAUNCH-BLOCKERS section 2). Check this paragraph against the build.
         'Tock checks for new versions by fetching a file from usetock.com. Like any request to a website, the check reaches our host with your IP address and the version of Tock you run. It carries nothing else about you and nothing you have recorded. You can turn the check off in Settings.',
-        // OPEN: the crash report is not built. Once it is, list here what a report holds (LAUNCH-CHECKLIST section 4).
-        `If Tock crashes, it offers to send us a report, at ${crashReportEmail}. The whole report is shown to you first, and nothing is sent unless you press Send. We use a report to find and fix the fault, and for nothing else.`,
+        // The crash report (the tock repository's CRASH-REPORT-PLAN, decided 2026-10-15). Tock posts it to buy.usetock.com,
+        // which passes it to Resend and keeps nothing of it but a count per day; production answers only once this is live.
+        // `tock-cli crash send --yes` (or `--force`) sends without a question, as an agent may: said here (2026-10-16).
+        `If Tock crashes, it offers to send us a report the next time it opens, and you can send one at any time, with or without a crash, from Report a Problem in its settings or with tock-cli. A report holds macOS’s own record of the crash, with your name, your Mac’s name and the identifiers of your Mac taken out; the versions of Tock and macOS; the model of your Mac; and a note and an address to reply to, if you write them. It never holds what you record in Tock or your licence key. In the app the whole report is shown to you first, and nothing is sent unless you press Send; tock-cli shows it too, and sends only when you, or an agent you run it from, tell it to. It reaches us as an email at ${crashReportEmail}. We use a report to find and fix the fault, and for nothing else.`,
         'Tock checks your licence key on your Mac, and never asks a server whether it works. When you activate a key on a Mac, Tock sends one message to buy.usetock.com: the key, with your name, your email address and the order number in it, and a one-way code for that Mac, which is different for every licence and from which nothing about the Mac can be read. Like any request to a website, it reaches our host with your IP address. If the message cannot be delivered, Tock sends it again later, until our service has taken it. Activating never depends on the answer, and Tock works the same without one. It sends nothing else about your licence. We keep usetock.com for as long as a version of Tock that sends this may run.',
         'The Buy button opens a web address that carries the day of your trial and your version of Tock. The “Not for me” button’s address carries the number of days you used Tock, the day of your trial and the version. Nothing is sent unless you press the button, and nothing else is on the link.',
       ],
@@ -172,7 +174,7 @@ export const tockPrivacy: Policy = {
       body: [
         [
           'Link and Stripe, for payments, and Apple if you pay with Apple Pay.',
-          'Resend, for the emails we send.',
+          'Resend, for the emails we send and the reports Tock sends us, which it keeps for 30 days.',
           'Cloudflare, for the website and the licence service at buy.usetock.com.',
           // Read from the domain's MX and SPF records and Gomailify's own pages, 2026-10-13. Confirm the Gmail mailbox.
           'Gomailify, a service of Mercata Sagl in Switzerland, and Google’s Gmail, for the messages and crash reports you send us. Gomailify passes each message on and deletes its copy within 7 days. The mailbox is at Gmail.',
