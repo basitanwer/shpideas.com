@@ -103,7 +103,7 @@ export const tockPrivacy: Policy = {
   updated,
   intro: [
     `This policy covers Tock, the time tracker for the Mac made by ${site.legalName}, which works under the name ${site.name}, and Tock’s website, usetock.com. It says what each collects, who else handles it and how to have it removed. It covers no other product of the company.`,
-    'The short version: Tock keeps your time on your Mac. It has no account, we run no server that holds what you record, and it sends us nothing about how you use it: only one message when you activate a key on a Mac.',
+    'The short version: Tock keeps your time on your Mac. It has no account, we run no server that holds what you record, and it sends us nothing about how you use it: only one message about your licence when you activate a key on a Mac.',
   ],
   sections: [
     {
@@ -113,8 +113,9 @@ export const tockPrivacy: Policy = {
         'Tock has no analytics. It does not report what you do in it or how often you open it.',
         'To notice that you have stepped away, Tock asks macOS how long ago the keyboard or mouse was last used. It does not read what you type or what is on your screen.',
         // Sync is hidden in 1.0. When it ships, say here that a copy goes to the user's private iCloud database, and name Apple below.
-        // The update check is in 1.0 and not built yet (LAUNCH-BLOCKERS section 2). Check this paragraph against the build.
-        'Tock checks for new versions by fetching a file from usetock.com. Like any request to a website, the check reaches our host with your IP address and the version of Tock you run. It carries nothing else about you and nothing you have recorded. You can turn the check off in Settings.',
+        // The update check (the tock repository's UPDATES-PLAN and UPDATES-DESIGN, decided 2026-10-16): Sparkle fetches the
+        // appcast at usetock.com/updates/appcast.xml and downloads archives from download.usetock.com. Check against the build.
+        'Tock checks for new versions by fetching a file from usetock.com, and downloads a new version from download.usetock.com when you install it. Like any request to a website, each reaches our host with your IP address and the version of Tock you run. They carry nothing else about you and nothing you have recorded. You can turn the check off in Settings.',
         // The crash report (the tock repository's CRASH-REPORT-PLAN, decided 2026-10-15). Tock posts it to buy.usetock.com,
         // which passes it to Resend and keeps nothing of it but a count per day; production answers only once this is live.
         // `tock-cli crash send --yes` (or `--force`) sends without a question, as an agent may: said here (2026-10-16).
