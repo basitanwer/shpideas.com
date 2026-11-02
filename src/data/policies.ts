@@ -100,7 +100,7 @@ export const tockPrivacy: Policy = {
   path: '/tock/privacy',
   title: 'Tock privacy policy',
   description: `What Tock and usetock.com collect, who else handles it, and how to have it removed.`,
-  updated,
+  updated: '2 November 2026',
   intro: [
     `This policy covers Tock, the time tracker for the Mac made by ${site.legalName}, which works under the name ${site.name}, and Tock’s website, usetock.com. It says what each collects, who else handles it and how to have it removed. It covers no other product of the company.`,
     'The short version: Tock keeps your time on your Mac. It has no account, we run no server that holds what you record, and it sends us nothing about how you use it: only one message about your licence when you activate a key on a Mac.',
@@ -142,12 +142,19 @@ export const tockPrivacy: Policy = {
     {
       heading: 'The website and the waitlist',
       body: [
-        // True today. Cookieless analytics and a count of downloads are planned for usetock.com
-        // (SITE-AND-MEASUREMENT sections 4 and 5); this sentence changes on the day either is added.
-        'usetock.com sets no cookies, loads no scripts from other companies and runs no analytics.',
+        // Cloudflare Web Analytics, on for both sites since before 2026-10-23 (Cloudflare adds its script to
+        // every page it serves). The claims are Cloudflare's own, read 2026-11-02: cloudflare.com/web-analytics
+        // ("does not use any client-side state, such as cookies or localStorage"; "don't 'fingerprint'
+        // individuals via their IP address, User Agent string, or any other data") and
+        // developers.cloudflare.com/web-analytics/about ("does not collect or use your visitors' personal data").
+        'usetock.com sets no cookies. To count visits, each page loads one small script from Cloudflare, Cloudflare Web Analytics, which tells Cloudflare the address of the page, the site that linked to it, the kind of browser and how quickly the page loaded. It keeps nothing on your device. Cloudflare says it collects no personal data this way and does not use your IP address or browser to fingerprint you, and we see only totals: how many pages were viewed, and from which sites, countries and kinds of device.',
+        // A count of downloads (SITE-AND-MEASUREMENT section 5) changes this section on the day it is added.
         'It is served by Cloudflare, which handles each request, your IP address included, to deliver the page and to keep the site safe from abuse.',
-        'When you join the waitlist on usetock.com, we send one email with a link to confirm your address. Until you confirm, we keep no list with your address on it: the link itself carries the address, readable by anyone who has the link, and stops working after 7 days. Resend, which delivers that email, keeps its own record of having sent it. When you press the button on the page the link opens, your address is added to our list at Resend, along with whether you offered to beta test.',
-        'We use that list to write to you about Tock: when it is released, about the beta if you offered to test, and now and then with news of it. We use it for nothing else and give it to nobody, and you can leave it at any time by writing to us.',
+        'When you join the waitlist on usetock.com, we send one email with a link to confirm your address. Until you confirm, we keep no list with your address on it: the link itself carries the address and where you came from, readable by anyone who has the link, and stops working after 7 days. Resend, which delivers that email, keeps its own record of having sent it. When you press the button on the page the link opens, your address is added to our list at Resend, along with whether you offered to beta test.',
+        // The sign-up's source: usetock.com's src/worker.ts and docs/marketing/reference/measurement.md, published
+        // 2026-11-02 before WAITLIST_SOURCES is switched on, as that file requires. The referrer is a bare host.
+        'A confirmed sign-up keeps where it came from, saved with your address at Resend: the utm_source and utm_campaign tags of the link you followed, if it had any, and the referrer, the name of the outside site that sent you, never the page on it. We also count confirmed sign-ups by day and by source, and that count holds no address.',
+        'We use that list to write to you about Tock: when it is released, about the beta if you offered to test, and now and then with news of it. We use where you came from to see which links bring people to the waitlist. We use them for nothing else and give them to nobody, and you can leave the list at any time by writing to us.',
       ],
     },
     {
@@ -161,7 +168,7 @@ export const tockPrivacy: Policy = {
       body: [
         // OPEN: these periods are proposals, yours to set. Nothing deletes on a date by itself: each is done by hand.
         [
-          'The waitlist: until you ask to leave it.',
+          'The waitlist, with where each sign-up came from: until you ask to leave it.',
           'Emails and crash reports: up to two years after the conversation ends or the fault is fixed.',
           'The record of a sale: as long as tax and accounting law requires.',
           'The order number of a refunded purchase, in Tock’s list: for as long as Tock is updated, since every later version has to refuse that key.',
@@ -176,7 +183,7 @@ export const tockPrivacy: Policy = {
         [
           'Link and Stripe, for payments, and Apple if you pay with Apple Pay.',
           'Resend, for the emails we send and the reports Tock sends us, which it keeps for 30 days.',
-          'Cloudflare, for the website and the licence service at buy.usetock.com.',
+          'Cloudflare, for the website, its count of visits, and the licence service at buy.usetock.com.',
           // Read from the domain's MX and SPF records and Gomailify's own pages, 2026-10-13. Confirm the Gmail mailbox.
           'Gomailify, a service of Mercata Sagl in Switzerland, and Google’s Gmail, for the messages and crash reports you send us. Gomailify passes each message on and deletes its copy within 7 days. The mailbox is at Gmail.',
         ],
@@ -204,6 +211,8 @@ export const tockPrivacy: Policy = {
           'A contract with you: making your licence key and sending it, and refunds.',
           'A legal duty: keeping the record of a sale.',
           'Our legitimate interest in answering people who write to us and in keeping the site and the licence service safe from abuse, and in refusing the key of a purchase that was refunded.',
+          'Our legitimate interest in knowing how many people visit the website and from where, counted without cookies: the count of visits.',
+          'Our legitimate interest in knowing which links bring people to the waitlist: where a sign-up came from.',
           'Our legitimate interest in knowing how many Macs a licence is used on, to decide what to build: the Macs a licence was activated on.',
         ],
       ],
