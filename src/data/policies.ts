@@ -58,7 +58,7 @@ export const privacy: Policy = {
   path: '/privacy',
   title: 'Privacy policy',
   description: `What ${site.name} collects on shpideas.com and when you write to it, and how to have it removed.`,
-  updated,
+  updated: '2 November 2026',
   intro: [
     `This is the policy of ${site.legalName}, which works under the name ${site.name}, for this website, shpideas.com, and for email you send the company. Each product has a policy of its own, linked at the foot of this page, which says what that product collects.`,
   ],
@@ -66,7 +66,12 @@ export const privacy: Policy = {
     {
       heading: 'This website',
       body: [
-        'shpideas.com sets no cookies, loads no scripts from other companies and runs no analytics.',
+        // Cloudflare Web Analytics, on for both sites since before 2026-10-23 (Cloudflare adds its script to
+        // every page it serves). The claims are Cloudflare's own, read 2026-11-02: cloudflare.com/web-analytics
+        // ("does not use any client-side state, such as cookies or localStorage"; "don't 'fingerprint'
+        // individuals via their IP address, User Agent string, or any other data") and
+        // developers.cloudflare.com/web-analytics/about ("does not collect or use your visitors' personal data").
+        'shpideas.com sets no cookies. To count visits, each page loads one small script from Cloudflare, Cloudflare Web Analytics, which tells Cloudflare the address of the page, the site that linked to it, the kind of browser and how quickly the page loaded. It keeps nothing on your device. Cloudflare says it collects no personal data this way and does not use your IP address or browser to fingerprint you, and we see only totals: how many pages were viewed, and from which sites, countries and kinds of device.',
         'It is served by Cloudflare, which handles each request, your IP address included, to deliver the page and to keep the site safe from abuse. Cloudflare keeps its own logs of those requests. We keep none of our own.',
       ],
     },
@@ -85,7 +90,7 @@ export const privacy: Policy = {
       body: [
         `Write to ${companyEmail} to see, correct or delete what we hold about you, to get a copy of it, or to ask us to stop or limit a use of it. You can also complain to the data protection authority of your country.`,
         // OPEN: for the lawyer, as in Tock's policy. Add the company's postal address.
-        `${site.legalName}, in the United States, decides how this data is used, and the companies named here handle it there and in other countries. Cloudflare says it is certified under the EU-US Data Privacy Framework, with its UK and Swiss extensions, and keeps the European standard contractual clauses in its terms beside it. For readers in the European Union and the United Kingdom, the ground for it is our legitimate interest in answering people who write to us and in keeping the site safe from abuse.`,
+        `${site.legalName}, in the United States, decides how this data is used, and the companies named here handle it there and in other countries. Cloudflare says it is certified under the EU-US Data Privacy Framework, with its UK and Swiss extensions, and keeps the European standard contractual clauses in its terms beside it. For readers in the European Union and the United Kingdom, the ground for it is our legitimate interest in answering people who write to us, in keeping the site safe from abuse and in counting its visits.`,
       ],
     },
     {
